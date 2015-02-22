@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+This is...eh...just a blog.
 
-### More Information
+### About me
 
-A place to include any other types of information that you'd like to include about yourself. 
+Undergraduate, male, underage, queer.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[k.memo.cz#gmail.com](mailto:k.memo.cz@gmail.com)

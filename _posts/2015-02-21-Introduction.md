@@ -1,3 +1,9 @@
+---
+layout: post
+title: You're up and running!
+---
+
+
 #Nb Helper
 ####Nb Helper is a set of python tools which simplifies several daily tasks and improve work efficiency.
 ####It includes following parts:

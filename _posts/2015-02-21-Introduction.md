@@ -1,10 +1,8 @@
 ---
 layout: post
-title: You're up and running!
+title: Nb Helper
 ---
 
-
-#Nb Helper
 ####Nb Helper is a set of python tools which simplifies several daily tasks and improve work efficiency.
 ####It includes following parts:
 - NbException: set of customised exceptions.
@@ -201,11 +199,11 @@ Tell if a file is equal to another file. It uses md5 to compare file by default 
 Close all opened handles of the instance and clear itself from the reference set. `dispose_all` method would close all handles created by NbFile in current namespace (if it is called this name).
 ####iterator
 NbFile implements the `__iter__` and `__next__` method which makes its instance iterable. By default, this iterator iters  text content line by line. To iter binary content, use `binary_iter` method.
-```python
+{% highlight python %}
 >>> sample = NbFile(‘Sample.txt’)
 >>> for text in sample:
             print(text)
 Love me little, love me long
 Love that lasteth till ’tis old
 Fadeth not in haste
-```
+{% endhighlight %}

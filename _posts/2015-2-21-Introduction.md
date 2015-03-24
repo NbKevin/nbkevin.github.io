@@ -4,16 +4,11 @@ title: Nb Helper
 ---
 
 ####Nb Helper is a set of python tools which simplifies several daily tasks and improve work efficiency.
-####It includes following parts:
-- NbException: set of customised exceptions.
-- NbTool: set of tools.
-- NbCrypt: simplified interface for several encryption algorithm
-- NbDecorator: decorators for unsafe, unrecommended and obsolete methods
-- NbConfig: configuration file for NbDecorator
-- NbFile: simple interface for file operations
-- NbMath: wrapper for several math calculations
-- NbStructure: usual data structures such as stack and queue
-- NbSupport: supportive module
+####Update
+#####24 March 2015
+Added cache for NbFile.
+Added extension, lines, read_line for NbFile.
+Added NbLinkedList.
 
 ##Examples
 #### Math: factorial, primes and etc.
@@ -69,15 +64,20 @@ True
 `name` field stores the name of the instance file, including its extension name. `size` gives out its size in byte.
 ####path, absolute\_path, parent\_dir
 `path` gives the path used to initialize the instance, whether relative or absolute. To get the absolute path of the instance file, use `absolute_path` and `parent_dir` gives the parent directory of it.
+####name, extension
+`name` gives the name of the file itself and the `extension` gives the extension name of the file.
 ####last\_access\_time, last\_modification\_time, creation\_time
 These three attributes gives information as their name tells in the format of UNIX time stamp.
 ####file, read, file_content
 `file` field refers to a general `IO Wrapper` instance in which the instance file is the target. To access the text content of a file, use `file_content`. However you must call `read` method first before using this field because the open and read operation is asynchronised. As a consequence, you must release this file either implicitly or explicitly or it would remain locked until python process terminates and no other process would be able to access this file. The `__del__` magic method ensures that file handles would be automatically released during recycling. Still, it is strong recommended to release it manually by calling `dispose` method.
 ####binary, read\_binary, binary\_content
 Access to binary content of instance file is provided with a similar interface. A proper disposal is also required after calling `read_binary` method.
+####lines, read\_line`(line_no)`
+The `lines` property stores the total lines of the file if it can be interpreted as text. And if so, `read_line` can directly return the content of a certain line.
 ####md5, crc32, sha1, sha224, sha256, sha384, sha512
-These are shortcuts to get the hash value of the instance file. For efficiency reason, they are implemented as property getter so that the value would only be calculated when being called.
-These properties rely on `NbCrypt` module.
+These are shortcuts to get the hash value of the instance file. For efficiency reason, they are implemented as property getter so that the value would only be calculated when being called. Also they will cache recent results for future query.
+Notice that if cache goes wrong or fails to automatically update info, use `NbCache.RebuildCache` function to rebuild the cache.
+These properties rely on both `NbCrypt` and `NbCache` module.
 ####copy `(source_file, target_file)`, copy\_to `(target_path)`
 Copy a file to a target path. Arguments can either be a path of file or a NbFile instance. Automatically release file handles.
 #####move `(source_file, target_file)`, move\_to `(target_path)`
